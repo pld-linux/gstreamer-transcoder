@@ -46,9 +46,7 @@ Pliki nagłówkowe biblioteki gst-transcoder.
 Summary:	API documentation for gst-transcoder library
 Summary(pl.UTF-8):	Dokumentacja API biblioteki gst-transcoder
 Group:		Documentation
-%if "%{_rpmversion}" >= "5"
 BuildArch:	noarch
-%endif
 
 %description apidocs
 API documentation for gst-transcoder library.
