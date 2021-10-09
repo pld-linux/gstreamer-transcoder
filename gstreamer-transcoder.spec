@@ -1,15 +1,15 @@
-%define         gst_ver         1.14.0
-%define         gstpb_ver       1.14.0
+%define         gst_ver         1.16.0
+%define         gstpb_ver       1.16.0
 Summary:	High level API to do media transcoding with GStreamer
 Summary(pl.UTF-8):	Wysokopoziomowe API do przekodowywania multimediów przy użyciu GSteamera
 Name:		gstreamer-transcoder
-Version:	1.14.1
+Version:	1.16.0
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 #Source0Download: https://github.com/pitivi/gst-transcoder/releases
 Source0:	https://github.com/pitivi/gst-transcoder/archive/%{version}/gst-transcoder-%{version}.tar.gz
-# Source0-md5:	12152f144fe4a9e61a17cb60b680ce4c
+# Source0-md5:	dbad5b5431958078a6aceba0fa808bbd
 URL:		https://github.com/pitivi/gst-transcoder
 BuildRequires:	glib2-devel >= 2.0
 BuildRequires:	gobject-introspection-devel
@@ -19,6 +19,8 @@ BuildRequires:	gtk-doc
 BuildRequires:	meson >= 0.36.0
 BuildRequires:	pkgconfig
 BuildRequires:	python3 >= 1:3.0
+BuildRequires:	rpm-build >= 4.6
+BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -58,23 +60,14 @@ Dokumentacja API biblioteki gst-transcoder.
 %setup -q -n gst-transcoder-%{version}
 
 %build
-CC="%{__cc}" \
-CFLAGS="%{rpmcflags} %{rpmcppflags}" \
-LDFLAGS="%{rpmldflags}" \
-meson build \
-	--buildtype=plain \
-	--prefix=%{_prefix} \
-	--libdir=%{_libdir}
+%meson build
 
-ninja -C build -v
+%ninja_build -C build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-DESTDIR=$RPM_BUILD_ROOT \
-ninja -C build -v install
-
-install -d $RPM_BUILD_ROOT%{_gtkdocdir}
+%ninja_install -C build
 
 %clean
 rm -rf $RPM_BUILD_ROOT
