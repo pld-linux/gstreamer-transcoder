@@ -1,3 +1,4 @@
+# NOTE: since 1.18.0 it's merged into gstreamer-plugins-bad.spec
 %define         gst_ver         1.16.0
 %define         gstpb_ver       1.16.0
 Summary:	High level API to do media transcoding with GStreamer
