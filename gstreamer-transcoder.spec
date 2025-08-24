@@ -21,7 +21,7 @@ BuildRequires:	meson >= 0.36.0
 BuildRequires:	pkgconfig
 BuildRequires:	python3 >= 1:3.0
 BuildRequires:	rpm-build >= 4.6
-BuildRequires:	rpmbuild(macros) >= 1.736
+BuildRequires:	rpmbuild(macros) >= 2.042
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
